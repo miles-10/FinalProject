@@ -50,7 +50,6 @@ const MovieScreen: FC<flat> = ({route, navigation} : any) => {
     setIsLoading(false);  
   }
 
-  const a = 1;
   
 
 
