@@ -49,6 +49,8 @@ const MovieScreen: FC<flat> = ({route, navigation} : any) => {
     setContent(res.data);
     setIsLoading(false);  
   }
+
+  const a = 1;
   
 
 
