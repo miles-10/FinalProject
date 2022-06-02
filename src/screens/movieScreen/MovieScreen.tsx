@@ -1,15 +1,6 @@
-import {StyleSheet, StatusBar, Text, Image, View} from 'react-native';
-import React, {FC, useEffect, useContext, useState} from 'react';
+import {StyleSheet, Text, Image, View} from 'react-native';
+import React, {FC, useEffect, useState} from 'react';
 import Colors from '@utility/styles/Colors';
-import {
-  FlatList,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
-import {requestApiData} from '@services/redux/movies/movie/movie.action';
-import Card from '@components/card';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {baseurl, API_KEY} from '@services/api/api';
 import Loader from '@components/Loader';
@@ -20,7 +11,7 @@ import axios from 'axios';
 interface flat {
   renderItem: any;
 }
-const MovieScreen: FC<flat> = ({route, navigation} : any) => {
+const MovieScreen: FC<flat> = ({route} : any) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState<any>();
@@ -50,11 +41,6 @@ const MovieScreen: FC<flat> = ({route, navigation} : any) => {
     setIsLoading(false);  
   }
 
-  
-
-
-  // console.log('check', users[0].poster_path);
-  // console.log('check',content[0].original_title);
   return (
     <SafeAreaView style={styles.homeScreen}>
       
@@ -62,46 +48,18 @@ const MovieScreen: FC<flat> = ({route, navigation} : any) => {
           isLoading ? ( <Loader /> 
           ) : ( 
             <View style={styles.container}>
-              <View>
-                <Image style={styles.image} source={{uri: `${baseurl}` + content?.backdrop_path}} />  
-                <Text style={styles.voteAverage}>{content?.vote_average}</Text>
-                <Text style={styles.voteCount}>{content?.vote_count}</Text>
-                <Text style={styles.releaseDate}>{content?.release_date}</Text>
+              <View style={styles.imageContainer}>
+                <Image style={styles.image} source={{uri: `${baseurl}` + content?.backdrop_path}} />
+                </View>   
+                <Text style={styles.voteAverage}>{`Rating: ${content?.vote_average}`}</Text>
+                <Text style={styles.voteCount}>{`VoteCount: ${content?.vote_count}`}</Text>
+                <Text style={styles.releaseDate}>{`Release Date: ${content?.release_date}`}</Text>
                 <Text style={styles.originalTitle}>{content?.original_title}</Text> 
                 <Text style={styles.overview}>{content?.overview}</Text>
-                         
-                </View>  
             </View>
           )
         }
-       {/* <Image source={{uri:`${baseurl}` + content.poster_path}} style={styles.image}/> */}
-
-        {/* {users && users.map((mov: any) =>(
-          <Text>{mov.original_title}</Text>
-        ))} */}
-        {/* <FlatList
-          style={styles.flatList}
-          data={users}
-          keyExtractor={(user, index) => 'key' + index}
-          // horizontal={true}
-          numColumns={2}
-          renderItem={(user: any) => {
-            return (
-              <Card
-              navigation={props.navigation}
-                key={user.item.id}
-                urlToImage={`${baseurl}` + user.item.poster_path}
-                title={user.item.original_title}
-                popularty={user.item.vote_average}
-                overView={user.item.release_date}
-              />
-            );
-          }}
-        /> */}
-        {/* <Image source={users.}></Image> */}
         
-   
-    
     </SafeAreaView>
   );
 };
@@ -111,7 +69,6 @@ export default MovieScreen;
 const styles = StyleSheet.create({
   homeScreen: {
     flex: 1,
-    // marginTop: StatusBar.currentHeight || 0,
     marginStart: 0,
     backgroundColor: Colors.secondary,
     height: '100%',
@@ -121,26 +78,46 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  imageContainer: {
+    width: '100%',
+    height: '50%',
+  },
   image: {
     alignSelf: 'center',
     flex: 1,
-    width: 400,
-    height: '1%',
+    width: '100%',
+    height: 50,
   },
   voteAverage : {
-
+    marginTop: 5,
+    fontWeight: 'bold',
+    fontSize: 17,
+    color: Colors.primary,
   },
   voteCount: {
-
+    marginTop: 5,
+    fontWeight: 'bold',
+    fontSize: 17,
+    color: Colors.primary,
   },
   releaseDate: {
-
+    marginTop: 5,
+    fontWeight: 'bold',
+    fontSize: 17,
+    color: Colors.primary,
   },
   originalTitle: {
-
+    marginTop: 5,
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: Colors.primary,
+    alignSelf: 'center',
   },
   overview: {
-
+    marginTop: 5,
+    fontSize: 15,
+    color: Colors.primary,
+    marginBottom: 200,
   },
  
 });
