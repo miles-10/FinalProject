@@ -14,7 +14,12 @@ const MyTabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
-        headerShown: false,
+        headerShown: true,
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: Colors.primary,
+          headerTitleStyle: Colors.white,
+        },
         style: {
           backgroundColor: 'green',
         },

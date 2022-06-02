@@ -1,22 +1,37 @@
 // In App.js in a new project
 
-import * as React from 'react';
+import React,{useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '@screens/HomeScreens/HomeScreen';
-import Icon from 'react-native-vector-icons/Ionicons';
 import MovieScreen from '@screens/movieScreen/MovieScreen';
+import SplashScreen from '@components/SplashScreen';
 import Colors from '@utility/styles/Colors';
 import TabNavigation from '@navigators/TabNavigation/TabNavigation';
-import {ScrollView} from 'react-native-gesture-handler';
+
 
 const Stack = createNativeStackNavigator();
 
 const Apps = () => {
+
+  const [showSplashScreen, setshowSplashScreen] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setshowSplashScreen(false);
+    },4000)
+  },[]);
+  
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
+     
+      {showSplashScreen ? (
+            <Stack.Screen
+            options={headerStyle} 
+            name="splash" 
+            component={SplashScreen} />
+            ) : null }
           <Stack.Screen
             options={headerStyle}
             name="Home"
@@ -33,11 +48,13 @@ const Apps = () => {
 };
 
 const headerStyle = {
-  title: 'Movies',
+  headerShown: false,
   headerStyle: {backgroundColor: Colors.primary},
   headerTitleStyle: {color: 'white'},
-  headerLeft: () => <Icon name="menu" size={28} color="white" />,
-  headerRight: () => <Icon name="search" size={28} color="white" />,
 };
 
 export default Apps;
+function useState(arg0: boolean): [any, any] {
+  throw new Error('Function not implemented.');
+}
+

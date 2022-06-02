@@ -3,16 +3,12 @@ import React, {FC, useEffect, useContext} from 'react';
 import Colors from '@utility/styles/Colors';
 import {
   FlatList,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
 } from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import {requestApiData} from '@services/redux/movies/movie/movie.action';
 import Card from '@components/card';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {baseurl} from '@services/api/api';
-import MovieScreen from '@screens/movieScreen/MovieScreen';
 // import IonIcons from 'react-native-vector-icons/Ionicons';
 // import {requestSearch} from '@services/redux/movies/search/search.action';
 
@@ -20,13 +16,11 @@ interface flat {
   renderItem: any;
 }
 const HomeScreen: FC<flat> = (props: any) => {
-
-
   const dispatch = useDispatch();
- 
-   const users = useSelector((state: any) => {
-      return state.user.users
-   });
+
+  const users = useSelector((state: any) => {
+    return state.user.users;
+  });
 
   // const search = useSelector((state: any) => {
   //   return state.search.search
@@ -61,7 +55,7 @@ const HomeScreen: FC<flat> = (props: any) => {
           renderItem={(user: any) => {
             return (
               <Card
-              navigation={props.navigation}
+                navigation={props.navigation}
                 id={user.item.id}
                 data={user.item}
                 urlToImage={`${baseurl}` + user.item.poster_path}
@@ -72,7 +66,6 @@ const HomeScreen: FC<flat> = (props: any) => {
             );
           }}
         />
-        
       </View>
     </SafeAreaView>
   );
@@ -120,9 +113,4 @@ const styles = StyleSheet.create({
     margin: 5,
     padding: 10,
   },
-  // posterImage: {
-  //   height: 200,
-  //   width: 200,
-  //   borderRadius: 10,
-  // },
 });
