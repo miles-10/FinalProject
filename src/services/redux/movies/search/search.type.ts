@@ -1,0 +1,2 @@
+// export const SEARCH_API_REQUEST = 'SEARCH_API';
+// export const  SEARCH_API_RESPONSE = 'SEARCH_API_RESPONSE';
