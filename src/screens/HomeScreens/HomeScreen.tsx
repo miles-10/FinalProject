@@ -9,8 +9,6 @@ import {requestApiData} from '@services/redux/movies/movie/movie.action';
 import Card from '@components/card';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {baseurl} from '@services/api/api';
-// import IonIcons from 'react-native-vector-icons/Ionicons';
-// import {requestSearch} from '@services/redux/movies/search/search.action';
 
 interface flat {
   renderItem: any;
@@ -22,26 +20,10 @@ const HomeScreen: FC<flat> = (props: any) => {
     return state.user.users;
   });
 
-  // const search = useSelector((state: any) => {
-  //   return state.search.search
-  // })
 
   useEffect(() => {
     dispatch(requestApiData());
   }, []);
-
-  // useEffect(() => {
-  //   if(searchMovie.length > 0) {
-  //     console.log('searchMovie',searchMovie.length, searchMovie);
-  //   dispatch(requestSearch());
-  //   } else {
-  //     console.log('searchMovie2',searchMovie.length, searchMovie);
-  //     dispatch(requestApiData());
-  //   }
-  // },[searchMovie.length]);
-
-  //  console.log('HomeScreen',users.poster_path);
-  // console.log('Search',search);
 
   return (
     <SafeAreaView style={styles.homeScreen}>

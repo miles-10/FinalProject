@@ -5,9 +5,10 @@ import {FlatList, TextInput} from 'react-native-gesture-handler';
 import Card from '@components/card';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import IonIcons from 'react-native-vector-icons/Ionicons';
-
+import {requestSearch} from '@services/redux/movies/search/search.action';
 import {baseurl} from '@services/api/api';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface flat {
   renderItem: any;
@@ -15,11 +16,19 @@ interface flat {
 const Search: FC<flat> = (props: any) => {
   const [searchMovie, setSearchMovie] = useState<any>('');
   const [keyword, setKeyword] = useState('');
+
   // const dispatch = useDispatch();
 
   // const search = useSelector((state: any) => {
-  //   return state.search.search
-  // })
+  //   setSearchMovie(state.search.search);
+  // });
+
+  // console.log('search',search);
+
+  // useEffect(() => {
+  //   dispatch(requestSearch());
+  // },[keyword.length]);
+
   const fetchData = async () => {
     const {data} = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=8d7f83d8bfcf03d79c463477132fc11b&language=en-US&page=1&include_adult=false&query=${keyword}`,
@@ -45,18 +54,18 @@ const Search: FC<flat> = (props: any) => {
         <FlatList
           style={styles.flatList}
           data={searchMovie}
-          keyExtractor={(user, index) => 'key' + index}
+          keyExtractor={(search, index) => 'key' + index}
           // horizontal={true}
           numColumns={2}
-          renderItem={(user: any) => {
+          renderItem={(search: any) => {
             return (
               <Card
                 navigation={props.navigation}
-                key={user.item.id}
-                urlToImage={`${baseurl}` + user.item.poster_path}
-                title={user.item.original_title}
-                popularty={user.item.vote_average}
-                overView={user.item.release_date}
+                key={search.item.id}
+                urlToImage={`${baseurl}` + search.item.poster_path}
+                title={search.item.original_title}
+                popularty={search.item.vote_average}
+                overView={search.item.release_date}
               />
             );
           }}
