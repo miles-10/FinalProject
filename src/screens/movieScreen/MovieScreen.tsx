@@ -34,7 +34,7 @@ const MovieScreen: FC<flat> = ({route} : any) => {
     }
     }
   , [route.params?.id]);
-  console.log('hello', content);
+
   const getdata = async (id: any) => {
     const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
     setContent(res.data);
@@ -49,7 +49,7 @@ const MovieScreen: FC<flat> = ({route} : any) => {
           ) : ( 
             <View style={styles.container}>
               <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: `${baseurl}` + content?.backdrop_path}} />
+                <Image style={styles.image} source={{uri: `${baseurl}` + content?.poster_path}} />
                 </View>   
                 <Text style={styles.voteAverage}>{`Rating: ${content?.vote_average}`}</Text>
                 <Text style={styles.voteCount}>{`VoteCount: ${content?.vote_count}`}</Text>

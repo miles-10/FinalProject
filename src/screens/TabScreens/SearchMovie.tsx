@@ -29,6 +29,7 @@ const Search: FC<flat> = (props: any) => {
 
   useEffect(() => {
     fetchData();
+
   }, [keyword.length]);
 
   return (

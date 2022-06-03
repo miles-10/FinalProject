@@ -18,7 +18,9 @@ const MyTabs = () => {
         headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: Colors.primary,
-          headerTitleStyle: Colors.white,
+          },
+          headerTitleStyle:{ 
+            color: Colors.white,
         },
         style: {
           backgroundColor: 'green',
@@ -27,7 +29,7 @@ const MyTabs = () => {
           let iconName: any;
 
           if (route.name === 'Movie') {
-            iconName = focused ? 'tv' : 'tv-outline';
+            iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Search') {
             iconName = focused ? 'search-circle' : 'search-circle-outline';
           } else if (route.name === 'List') {
@@ -39,9 +41,9 @@ const MyTabs = () => {
           return <Icon name={iconName} size={size} color={color} />;
         },
       })}>
-      <Tab.Screen name="Movies" component={HomeScreen} />
+      <Tab.Screen  name="Movies" component={HomeScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Reminder" component={ToDoScreen} />
+      <Tab.Screen options={{ headerShown: false}} name="Reminder" component={ToDoScreen} />
       <Tab.Screen name="Photo" component={RandomPhoto} />
     </Tab.Navigator>
   );

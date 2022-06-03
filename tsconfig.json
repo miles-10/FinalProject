@@ -31,6 +31,7 @@
     "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
     "paths": {
       "@assets/*": ["src/assets/*"],
+      "@index/*": ["./src/index.d.ts"],
       "@components/*": ["src/components/*"],
       "@navigators/*" : ["src/navigators/*"],
       "@screens/*" : ["src/screens/*"],

@@ -4,12 +4,10 @@ import {
   View,
   Image,
   TouchableOpacity,
-  Linking,
-  Alert,
 } from 'react-native';
 import React from 'react';
 import Colors from '@utility/styles/Colors';
-import MovieScreen from '@screens/movieScreen/MovieScreen';
+
 
 const card = ({title, overView, urlToImage, popularty, navigation, id}: any) => {
   // const handleOnPress = () => {
